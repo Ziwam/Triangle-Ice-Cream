@@ -1,3 +1,99 @@
-html, body, #root, .app, #map {
+ /*------------Element Borders*/
+html, body, #root, .app, .content, .side-content {
   height: 100%;
+}
+
+ /*------------Content Styling*/
+.app {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+.content {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.side-content {
+	display: flex;
+	flex-direction: row;	
+}
+
+.side-content button {
+	height: 50px;
+	position: absolute;
+	max-width: 50px;
+	z-index: 1;
+}
+
+header {
+	height: 50px;
+	background-color: navy;
+}
+
+#map {
+	flex-grow: 1;
+}
+
+ /*------------List Styling*/
+#list {
+	width: 200px;
+	height: 100%;
+	background-color: navy;
+}
+
+#list .input-wrapper, #list .list-wrapper, #list .shop-list {
+}
+
+#list i {
+	color: white;
+	size: 20px;
+}
+
+#list .shop-list {
+	list-style: none;
+	padding: 0px;
+	color: white;
+	overflow: hidden;
+	overflow-y: scroll;
+	height: 100%;
+	margin: 0;
+}
+
+#list input {
+	height: 100%;
+	border: none;
+	padding: 0;
+}
+
+#list h1 {
+	margin: 0;
+	height: 50px;
+	text-align: center;
+	color: white;
+}
+
+#list .input-wrapper {
+	height: 30px;
+}
+
+#list .list-wrapper {
+	height: calc(100% - 80px);
+}
+
+ /*------------Device Scaling*/
+ /*------------Medium*/
+@media screen and (max-width: 700px)  {
+	.side-content {
+		position: absolute;
+		z-index: 1;
+	}
+}
+
+/* ------------Large*/
+@media screen and (min-width: 701px){
+
 }
