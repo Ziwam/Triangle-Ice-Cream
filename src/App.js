@@ -38,7 +38,8 @@ class App extends Component {
 	      </div>
       	<div className="content">
       		<header></header>
-	        <Map/>
+	        <Map
+	        	data={this.state.Data}/>
       	</div>
       </div>
     )
