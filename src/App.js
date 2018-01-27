@@ -10,7 +10,8 @@ class App extends Component {
   state = {
     Data: [],
     Display: [],
-    showList: false
+    Clicked: null,
+    showList: true
   }
 
   componentDidMount() {
@@ -25,12 +26,28 @@ class App extends Component {
     });
   }
 
+  callMarker = (Clicked) => {
+  	this.setState({Clicked});
+  }
+
+  clearMarker = () => {
+  	this.setState({Clicked:null});
+  }
+
+  setDisplay = (Display) => {
+  	this.setState({Display});
+  }
+
   render() {
     return (
       <div className="app">
       	<div className="side-content">
 	      	<ToggleDisplay show={this.state.showList}>
-		      	<List/>
+		      	<List
+		      		clearMarker={this.clearMarker}
+		      		setDisplay={this.setDisplay}
+		      		data={this.state.Data}
+		      		alrt={this.callMarker}/>
 		      </ToggleDisplay>
 		      <div className="button-wrapper">
 		      	<button onClick={ () => this.handleClick() }>Side View</button>
@@ -39,6 +56,9 @@ class App extends Component {
       	<div className="content">
       		<header></header>
 	        <Map
+	        	clearMarker={this.clearMarker}
+	        	clicked={this.state.Clicked}
+	        	display={this.state.Display}
 	        	data={this.state.Data}/>
       	</div>
       </div>

@@ -45,29 +45,13 @@ header {
 	background-color: navy;
 }
 
-#list .input-wrapper, #list .list-wrapper, #list .shop-list {
-	
-}
-
-#list i {
-	color: white;
-	size: 20px;
-}
-
 #list .shop-list {
 	list-style: none;
 	padding: 0px;
 	color: white;
-	overflow: hidden;
-	overflow-y: scroll;
+	overflow: auto;
 	height: 100%;
 	margin: 0;
-}
-
-#list input {
-	height: 100%;
-	border: none;
-	padding: 0;
 }
 
 #list h1 {
@@ -79,11 +63,47 @@ header {
 
 #list .input-wrapper {
 	height: 30px;
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+#list .input-wrapper input {
+	height: 100%;
+	width: 153px;
+	border: none;
+	padding: 0;
+	padding-left: 12px;
+}
+
+#list .input-wrapper .filter-button {
+	color: white;
+	background-color: gray;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	cursor: pointer;
+}
+
+#list .input-wrapper .filter-button i {
+	margin: auto;
 }
 
 #list .list-wrapper {
 	height: calc(100% - 80px);
 }
+
+#list li {
+	display: flex;
+	height: 40px;
+	border-bottom: 1px solid black;
+}
+
+#list li p {
+	font-size: 13px;
+	margin: auto;
+	margin-left: 12px;
+}
+
 
  /*------------Device Scaling*/
  /*------------Medium*/
