@@ -16,7 +16,7 @@ class List extends Component {
 
 	filterDisplay = (event) => {
 		event.preventDefault();
-			let showingShops = [];
+		let showingShops = [];
 		if(this.state.query){
 			const match = new RegExp(this.state.query, 'i');
 			showingShops = this.props.data.filter((shop) => match.test(shop.restaurant.name));

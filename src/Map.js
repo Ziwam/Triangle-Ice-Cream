@@ -9,10 +9,12 @@ class Map extends Component {
   }
 
   state = {
-  	markers: []
+  	markers: [],
+  	display: [],
+  	bounceMarker: null
   }
 
-  //Async script loader waits until google maps api loades
+  //Async script loader waits until google maps api loads
   componentWillReceiveProps ({ isScriptLoaded, isScriptLoadSucceed }) {
     if (isScriptLoaded && !this.props.isScriptLoaded) { // load finished
       if (isScriptLoadSucceed) {
@@ -26,35 +28,52 @@ class Map extends Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(nextProps, nextState) {
     if (this.props.data.length > 0 && this.state.markers.length == 0) {
     	this.createMarkers();
-    } else if(this.state.markers.length > 0 && this.props.display.length > 0){
-    	this.state.markers.map((marker) => {
-    		for(let item of this.props.display) {
-    			if(item.restaurant.name == marker.title){
-    				marker.setMap(this.map);
-    				break;
-    			}else{
-    				marker.setMap(null);
-    			}
-    		}
-    	});
-    } else if(this.state.markers.length > 0 && this.props.display.length == 0){
-    	this.state.markers.map((marker) => {
-    		marker.setMap(this.map);
-    	});
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+  	if(this.state.display != nextProps.display) {
+  		
+  		this.setState({display:nextProps.display});
+
+			if(this.state.markers.length > 0 && nextProps.display.length > 0) {
+	    	this.state.markers.map((marker) => {
+	    		for(let item of nextProps.display) {
+	    			if(item.restaurant.name == marker.title){
+	    				marker.setMap(this.map);
+	    				break;
+	    			}else{
+	    				marker.setMap(null);
+	    			}
+	    		}
+	    	});
+	    } else if(this.state.markers.length > 0 && nextProps.display.length == 0) {
+	    	this.state.markers.map((marker) => {
+	    		marker.setMap(this.map);
+	    	});
+	    }
+
+	    if(this.LargeInfoWindow)
+	    	this.LargeInfoWindow.close();
+  	}
+
+    if(nextProps.clicked && this.state.markers.length > 0) {
+    	this.emphasizeMarker(parseFloat(nextProps.clicked));
     }
 
-    if(this.props.clicked && this.state.markers.length > 0){
-    	this.populateInfoWindow(parseFloat(this.props.clicked));
-    }
+  	if(this.state.markers.length > 0){
+  		return false;
+  	}else {
+  		return true;
+  	}
   }
 
   //Creates markers from props and stores in state array
   createMarkers() {
   	this.LargeInfoWindow = new window.google.maps.InfoWindow();
-  	
   	let allMarks = [];
   	let bounds = new window.google.maps.LatLngBounds();
 
@@ -91,11 +110,25 @@ class Map extends Component {
   		infowindow.marker = marker;
   		infowindow.setContent('<div>'+marker.title+'</div>');
   		infowindow.open(this.map,marker);
-  		infowindow.addListener('closeclick',function(){
+  		infowindow.addListener('closeclick',() => {
   			infowindow.marker = null;
-  			this.props.clearMarker();
   		});
   	}
+  	this.clearBounce();
+  }
+
+  emphasizeMarker = (id) => {
+  	this.clearBounce();
+  	let marker = this.state.markers.filter(item => item.id == id)[0];
+  	this.map.panTo(marker.getPosition());
+  	marker.setAnimation(window.google.maps.Animation.BOUNCE);
+  	this.setState({bounceMarker:marker});
+  }
+
+  clearBounce = () => {
+  	if(this.state.bounceMarker)
+  	this.state.bounceMarker.setAnimation(null);
+  	this.props.clearMarker();
   }
 
   render() {
