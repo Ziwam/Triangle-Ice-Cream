@@ -104,6 +104,64 @@ header {
 	margin-left: 12px;
 }
 
+ /*------------InfoWindow Styling*/
+#infowindow {
+	max-width: 140px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+#infowindow section {
+	display: flex;
+	margin: auto;
+	height: 60px;
+}
+
+#infowindow h3 {
+	margin-top: 8px;
+	padding-bottom: 2px;
+	margin-bottom: 8px;
+	border-bottom: 1px solid #eee;
+}
+
+#infowindow h4 {
+	font-weight: normal;
+	margin-top: 0;
+	margin-bottom: 12px;
+}
+
+#infowindow .rating {
+	margin: auto;
+	text-align: center;
+	display: flex;
+	width: 50px;
+	height: 50px;
+	border-radius: 7px;
+}
+
+#infowindow .rating p {
+	margin: auto;
+	color: white;
+	font-weight: 900;
+	font-size: 25px;
+}
+
+#infowindow .icon-wrapper {
+	display: flex;
+	flex-direction: column;
+	margin-left: 20px;
+}
+
+#infowindow .icon-wrapper a {
+	margin: auto;
+}
+
+#infowindow .icon-wrapper a .icon {
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
 
  /*------------Device Scaling*/
  /*------------Medium*/

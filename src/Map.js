@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import scriptloader from 'react-async-script-loader';
+import zomato_icon from './icons/zomato_icon.svg';
+import maps_icon from './icons/maps_icon.svg';
 
 class Map extends Component {
   constructor(props){
@@ -74,19 +76,33 @@ class Map extends Component {
   //Creates markers from props and stores in state array
   createMarkers() {
   	this.LargeInfoWindow = new window.google.maps.InfoWindow();
+
   	let allMarks = [];
   	let bounds = new window.google.maps.LatLngBounds();
 
   	this.props.data.map((info) => {
+  		let title = info.restaurant.name;
+  		let id = info.restaurant.id;
+  		let cuisines = info.restaurant.cuisines;
+  		let url = info.restaurant.url;
+  		let address = info.restaurant.location.address;
+  		let rating = info.restaurant.user_rating.aggregate_rating;
+  		let rating_color = info.restaurant.user_rating.rating_color;
+  		let votes = info.restaurant.user_rating.votes;
   		let location = {
   			lat:parseFloat(info.restaurant.location.latitude),
   			lng:parseFloat(info.restaurant.location.longitude)};
-  		let title = info.restaurant.name;
-  		let id = info.restaurant.id;
+
   		let marker = new window.google.maps.Marker({
   			map: this.map,
   			position: location,
   			title: title,
+  			cuisines: cuisines,
+  			url: url,
+  			address: address,
+  			rating: rating,
+  			rating_color: rating_color,
+  			votes: votes,
   			animation: window.google.maps.Animation.DROP,
   			id: id
   		});
@@ -108,7 +124,7 @@ class Map extends Component {
   	let infowindow = this.LargeInfoWindow;
   	if(infowindow.marker != marker){
   		infowindow.marker = marker;
-  		infowindow.setContent('<div>'+marker.title+'</div>');
+  		infowindow.setContent(this.infoWindowContent(marker));
   		infowindow.open(this.map,marker);
   		infowindow.addListener('closeclick',() => {
   			infowindow.marker = null;
@@ -129,6 +145,29 @@ class Map extends Component {
   	if(this.state.bounceMarker)
   	this.state.bounceMarker.setAnimation(null);
   	this.props.clearMarker();
+  }
+
+  infoWindowContent = (marker) => {
+  	let directions = 'https://www.google.com/maps/dir//' + marker.address.split(" ").join("+");
+
+  	let color = 'e2e2e2';
+  	if(marker.votes > 0)
+  		color = marker.rating_color;
+
+  	const markup = `
+<div id="infowindow">
+	<h3>${marker.title}</h3>
+	<h4>${marker.cuisines}</h4>
+	<section>
+		<div class="rating" style="background-color:#${color}"><p>${marker.rating}</p></div>
+		<div class="icon-wrapper">
+			<a href=${marker.url} target="_blank"><img class="icon" src=${zomato_icon}></a>
+			<a href=${directions} target="_blank"><img class="icon" src=${maps_icon}></a>
+		</div>
+	</section>
+</div>
+  	`;
+  	return markup;
   }
 
   render() {

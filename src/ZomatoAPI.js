@@ -23,7 +23,7 @@ export const getAll = () =>
 			//check to see if there are anymore results not grabbed
 			if((start+res.results_shown)<res.results_found){
 				start += res.results_shown;
-				//return nre fetch if not done
+				//return fetch if not done
 				return getAll();
 			}else{
 				//return results if done
