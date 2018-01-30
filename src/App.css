@@ -38,6 +38,16 @@ header {
 	flex-grow: 1;
 }
 
+#fill-error {
+	flex-grow: 1;
+	background-color: #ffd8d1;
+}
+
+#fill-fetch {
+	flex-grow: 1;
+	background-color: #d7ffd1;
+}
+
  /*------------List Styling*/
 #list {
 	width: 200px;

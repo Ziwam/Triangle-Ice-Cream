@@ -30,3 +30,7 @@ export const getAll = () =>
 				return results;
 			}
 		})
+		.catch(err => {
+			console.log("Failed to fetch API.");
+			return err;
+		})
