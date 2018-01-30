@@ -41,7 +41,7 @@ class List extends Component {
 
 		return (
 			<aside id="list">
-				<h1>Locations</h1>
+				<header><h2>Locations</h2></header>
 				<div className="input-wrapper">
 				<form onSubmit={(e) => this.filterDisplay(e)}>
 					<input

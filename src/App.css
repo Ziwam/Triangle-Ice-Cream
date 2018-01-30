@@ -22,16 +22,36 @@ html, body, #root, .app, .content, .side-content {
 	flex-direction: row;	
 }
 
-.side-content button {
+.side-content .button-wrapper .icon {
 	height: 50px;
+	width: 50px;
 	position: absolute;
-	max-width: 50px;
 	z-index: 1;
+	display: flex;
+	cursor: pointer;
+}
+
+
+.side-content .button-wrapper .icon:hover {
+	background-color: #282828;
+}
+
+.side-content .button-wrapper .icon i {
+	font-size: 25px;
+	color: #f78fa7;
+	margin: auto;
 }
 
 header {
 	height: 50px;
-	background-color: navy;
+	background-color: #3d3d3d;
+	display: flex;
+}
+
+header h1 {
+	margin: auto;
+	text-align: center;
+	color: white;
 }
 
 #map {
@@ -52,21 +72,24 @@ header {
 #list {
 	width: 200px;
 	height: 100%;
-	background-color: navy;
 }
 
 #list .shop-list {
 	list-style: none;
 	padding: 0px;
-	color: white;
 	overflow: auto;
 	height: 100%;
 	margin: 0;
+	background-color: #636363;
 }
 
-#list h1 {
-	margin: 0;
-	height: 50px;
+#list header {
+	display: flex;
+	background-color: #f78fa7;
+}
+
+#list h2 {
+	margin: auto;
 	text-align: center;
 	color: white;
 }
@@ -86,35 +109,66 @@ header {
 }
 
 #list .input-wrapper .filter-button {
-	color: white;
-	background-color: gray;
+	background-color: #f9a7ba;
 	height: 100%;
 	width: 100%;
 	display: flex;
 	cursor: pointer;
 }
 
+#list .input-wrapper .filter-button:hover {
+	background-color: #f57794;
+}
+
 #list .input-wrapper .filter-button i {
 	margin: auto;
+	color: white;
 }
 
 #list .list-wrapper {
 	height: calc(100% - 80px);
 }
 
+#list .input-wrapper input {
+	background-color: #f9a7ba;
+}
+
 #list li {
 	display: flex;
 	height: 40px;
-	border-bottom: 1px solid black;
+	margin: 8px;
+	background-color:  #282828;
+	border-radius: 3px;
 }
 
 #list li p {
 	font-size: 13px;
 	margin: auto;
 	margin-left: 12px;
+	color: #f78fa7;
 }
 
- /*------------InfoWindow Styling*/
+ /*------------Scrollbar Styling*/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(61, 61, 61, 0.6); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(247,143,167); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(244,95,130); 
+}
+
 #infowindow {
 	max-width: 140px;
 	display: flex;
@@ -179,6 +233,14 @@ header {
 	.side-content {
 		position: absolute;
 		z-index: 1;
+	}
+
+	#list .shop-list {
+		background-color: rgba(61, 61, 61, 0.6);
+	}
+
+	#list li {
+		background-color: rgba(40, 40, 40, 0.9);
 	}
 }
 

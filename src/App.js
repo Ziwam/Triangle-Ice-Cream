@@ -21,7 +21,7 @@ class App extends Component {
     .then(Data => {
     	if(Data.length > 0)
       	this.setState({
-      		Data: [],
+      		Data: Data,
       		ShowList: true,
       		FetchData: false
       	});
@@ -76,12 +76,14 @@ class App extends Component {
 		      		data={this.state.Data}
 		      		alrt={this.callMarker}/>
 		      </ToggleDisplay>
-		      <div className="button-wrapper">
-		      	<button onClick={ () => this.handleClick() }>Side View</button>
+		      <div className="button-wrapper" onClick={ () => this.handleClick() }>
+		      	<div className="icon">
+		      		<i className="fa fa-bars"></i>
+		      	</div>
 		      </div>
 	      </div>)}
       	<div className="content">
-      		<header></header>
+      		<header><h1>Triangle Ice Cream</h1></header>
 	        {content}
       	</div>
       </div>
