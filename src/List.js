@@ -6,36 +6,50 @@ class List extends Component {
 		display: []
 	}
 
+	//save input value to query state
 	updateQuery = (query) => {
 		this.setState({query});
 	}
 
+	/*
+		alerts parent component that menu item was clicked.
+		passes shops id.
+	*/
 	seletOption = (string) => {
 		this.props.alrt(string);
 	}
 
+	//filters list on submit/filter-button click
 	filterDisplay = (event) => {
 		event.preventDefault();
+
 		let showingShops = [];
 		if(this.state.query){
 			const match = new RegExp(this.state.query, 'i');
 			showingShops = this.props.data.filter((shop) => match.test(shop.restaurant.name));
+			//sets shops view to state display
 			this.setState({display:showingShops});
 		}else{
+			//empty display if no query
 			this.setState({display:[]});
 		}
 
+		//resets query to empty string
 		this.setState({query:''});
 
+		//pass filtered list to parent
 		this.props.setDisplay(showingShops);
 		this.props.clearMarker();
 	}
 	
 	render() {
 		let showingShops;
+		//checks if filtered list state has objectcs
 		if(this.state.display.length > 0){
+			//showingShops is set to filtered list
 			showingShops = this.state.display;
 		}else{
+			//if no filtered list show original list
 			showingShops = this.props.data;
 		}
 

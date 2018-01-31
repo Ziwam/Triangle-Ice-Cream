@@ -17,6 +17,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+  	//fetch data and change state based on results
     ZomatoAPI.getAll()
     .then(Data => {
     	if(Data.length > 0)
@@ -31,12 +32,14 @@ class App extends Component {
     })
   }
 
+  //show/hide menu on menu click
   handleClick() {
     this.setState({
       ShowList: !this.state.ShowList
     });
   }
 
+  //set clicked marker from list click to state clicked
   callMarker = (Clicked) => {
   	this.setState({Clicked});
   }
@@ -45,6 +48,7 @@ class App extends Component {
   	this.setState({Clicked:null});
   }
 
+  //set filtered results from list search to state display
   setDisplay = (Display) => {
   	this.setState({Display});
   }
@@ -52,16 +56,19 @@ class App extends Component {
   render() {
   	let content = null;
   	if(this.state.Data.length > 0 && !this.state.FetchData) {
+  		//show map if there is data
 			content = <Map
 		        	clearMarker={this.clearMarker}
 		        	clicked={this.state.Clicked}
 		        	display={this.state.Display}
 		        	data={this.state.Data}/>;
 		}else if(this.state.Data.length == 0 && !this.state.FetchData) {
+			//show error if no data and  fetch finished
 			content = <Fill
 							text={"Error: Could Not Reach Servers."}
 							fill_class={"error"}/>;
 		}else {
+			//show loading animation
 			content = <Fill
 							fill_class={"fetch"}/>;
 		}
@@ -77,8 +84,8 @@ class App extends Component {
 		      		data={this.state.Data}
 		      		alrt={this.callMarker}/>
 		      </ToggleDisplay>
-		      <div className="button-wrapper" onClick={ () => this.handleClick() }>
-		      	<div className="icon" role="button" tabIndex="0" aria-label="menu">
+		      <div className="button-wrapper" >
+		      	<div className="icon" role="button" tabIndex="0" aria-label="menu" onClick={ () => this.handleClick() }>
 		      		<i className="fa fa-bars"></i>
 		      	</div>
 		      </div>

@@ -50,6 +50,7 @@ header {
 
 header h1 {
 	margin: auto;
+	padding-left: 50px;
 	text-align: center;
 	color: white;
 }
@@ -252,6 +253,11 @@ header h1 {
  /*------------Device Scaling*/
  /*------------Medium*/
 @media screen and (max-width: 700px)  {
+
+	header h1 {
+		font-size: 1.8em;
+	}
+
 	.side-content {
 		position: absolute;
 		z-index: 1;
@@ -268,9 +274,4 @@ header h1 {
 	#list li {
 		background-color: rgba(40, 40, 40, 0.9);
 	}
-}
-
-/* ------------Large*/
-@media screen and (min-width: 701px){
-
 }

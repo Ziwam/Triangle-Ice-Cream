@@ -17,7 +17,7 @@ export const getAll = () =>
 	})
 		.then(res => res.json())
 		.then(res => {
-
+			//push restaurant objects to results array
 			results.push(...res.restaurants);
 
 			//check to see if there are anymore results not grabbed

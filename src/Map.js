@@ -24,6 +24,7 @@ class Map extends Component {
           center: {lat: -34.397, lng: 150.644},
           zoom: 2
         });
+         //removes google maps div & links from tab order
          window.google.maps.event.addListener(this.map, "tilesloaded", function(){
           [].slice.apply(document.querySelectorAll('#map a, #map div')).forEach(function(item) { 
      				item.setAttribute('tabindex','-1'); 
@@ -36,16 +37,18 @@ class Map extends Component {
   }
 
   componentDidUpdate(nextProps, nextState) {
+  	//there are objects to be made into markers and no markers
     if (this.props.data.length > 0 && this.state.markers.length == 0) {
     	this.createMarkers();
     }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+  	//checks for list changes
   	if(this.state.display != nextProps.display) {
   		
   		this.setState({display:nextProps.display});
-
+  		//sets map for markers that are found in list
 			if(this.state.markers.length > 0 && nextProps.display.length > 0) {
 	    	this.state.markers.map((marker) => {
 	    		for(let item of nextProps.display) {
@@ -57,12 +60,14 @@ class Map extends Component {
 	    			}
 	    		}
 	    	});
+	    	//sets all markers to map if filtered list is empty
 	    } else if(this.state.markers.length > 0 && nextProps.display.length == 0) {
 	    	this.state.markers.map((marker) => {
 	    		marker.setMap(this.map);
 	    	});
 	    }
 
+	    //close infowindow
 	    if(this.LargeInfoWindow)
 	    	this.LargeInfoWindow.close();
   	}
@@ -71,6 +76,10 @@ class Map extends Component {
     	this.emphasizeMarker(parseFloat(nextProps.clicked));
     }
 
+    /*
+    	return false is there are markers already showing on the map.
+    	no need to rerender
+    */
   	if(this.state.markers.length > 0){
   		return false;
   	}else {
@@ -80,12 +89,14 @@ class Map extends Component {
 
   //Creates markers from props and stores in state array
   createMarkers() {
+  	//store new infowindow into global variable
   	this.LargeInfoWindow = new window.google.maps.InfoWindow();
 
   	let allMarks = [];
   	let bounds = new window.google.maps.LatLngBounds();
 
   	this.props.data.map((info) => {
+  		//stores shop info into variables
   		let title = info.restaurant.name;
   		let id = info.restaurant.id;
   		let cuisines = info.restaurant.cuisines;
@@ -115,11 +126,13 @@ class Map extends Component {
   		allMarks.push(marker);
   		bounds.extend(marker.position);
 
+  		//adds listener to marker to pass id to populateinfowindow
   		marker.addListener('click',() => {
   			this.populateInfoWindow(marker.id);
   		});
   	});
 
+  	//set markers state to new markers
   	this.setState({markers: allMarks});
   	this.map.fitBounds(bounds);
   }
@@ -138,23 +151,28 @@ class Map extends Component {
   	this.clearBounce();
   }
 
+  //adds bounce animation to marker that matches id
   emphasizeMarker = (id) => {
   	this.clearBounce();
   	let marker = this.state.markers.filter(item => item.id == id)[0];
   	this.map.panTo(marker.getPosition());
   	marker.setAnimation(window.google.maps.Animation.BOUNCE);
+  	//stores bouncing marker in state variable
   	this.setState({bounceMarker:marker});
   }
 
+  //stops bounce animation for selected marker
   clearBounce = () => {
   	if(this.state.bounceMarker)
   	this.state.bounceMarker.setAnimation(null);
   	this.props.clearMarker();
   }
 
+  //creates markup for infowindow content
   infoWindowContent = (marker) => {
   	let directions = 'https://www.google.com/maps/dir//' + marker.address.split(" ").join("+");
 
+  	//sets color for rating
   	let color = 'e2e2e2';
   	if(marker.votes > 0)
   		color = marker.rating_color;
