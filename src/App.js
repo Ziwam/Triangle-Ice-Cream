@@ -77,7 +77,7 @@ class App extends Component {
 		      		alrt={this.callMarker}/>
 		      </ToggleDisplay>
 		      <div className="button-wrapper" onClick={ () => this.handleClick() }>
-		      	<div className="icon">
+		      	<div className="icon" role="button" tabIndex="0" aria-label="menu">
 		      		<i className="fa fa-bars"></i>
 		      	</div>
 		      </div>

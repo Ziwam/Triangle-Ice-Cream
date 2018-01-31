@@ -139,6 +139,7 @@ header h1 {
 	margin: 8px;
 	background-color:  #282828;
 	border-radius: 3px;
+	cursor: pointer;
 }
 
 #list li p {
@@ -176,8 +177,9 @@ header h1 {
 	text-align: center;
 }
 
-#infowindow section {
+#infowindow .info {
 	display: flex;
+	flex-direction: row;
 	margin: auto;
 	height: 60px;
 }
@@ -233,6 +235,10 @@ header h1 {
 	.side-content {
 		position: absolute;
 		z-index: 1;
+	}
+
+	.side-content .button-wrapper .icon {
+		background-color: #282828;
 	}
 
 	#list .shop-list {

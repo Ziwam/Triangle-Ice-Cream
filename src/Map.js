@@ -24,6 +24,11 @@ class Map extends Component {
           center: {lat: -34.397, lng: 150.644},
           zoom: 2
         });
+         window.google.maps.event.addListener(this.map, "tilesloaded", function(){
+          [].slice.apply(document.querySelectorAll('#map a, #map div')).forEach(function(item) { 
+     				item.setAttribute('tabindex','-1'); 
+    			});
+  			});
       } else {
       	alert("script not loaded");
       }
@@ -158,13 +163,13 @@ class Map extends Component {
 <div id="infowindow">
 	<h3>${marker.title}</h3>
 	<h4>${marker.cuisines}</h4>
-	<section>
+	<div class="info">
 		<div class="rating" style="background-color:#${color}"><p>${marker.rating}</p></div>
 		<div class="icon-wrapper">
-			<a href=${marker.url} target="_blank"><img class="icon" src=${zomato_icon}></a>
-			<a href=${directions} target="_blank"><img class="icon" src=${maps_icon}></a>
+			<a href=${marker.url} target="_blank" role="Link" tabindex="0" aria-label="zomato page"><img class="icon" src=${zomato_icon} alt="zomato logo"></a>
+			<a href=${directions} target="_blank" role="Link" tabindex="0" aria-label="directions"><img class="icon" src=${maps_icon} alt="google maps logo"></a>
 		</div>
-	</section>
+	</div>
 </div>
   	`;
   	return markup;

@@ -48,17 +48,18 @@ class List extends Component {
 						type="text"
 						placeholder="Enter an Ice Cream Shop"
 						value={this.state.query}
+						role="textbox"
 						onChange={(ev) => this.updateQuery(ev.target.value)}/>
 					</form>
-					<div className="filter-button" onClick={(e) => this.filterDisplay(e)}>
+					<div className="filter-button" role="button" tabIndex="0" aria-label="filter" onClick={(e) => this.filterDisplay(e)}>
 						<i className="fa fa-filter"></i>
 					</div>
 				</div>
 				<div className="list-wrapper">
 					<ul className="shop-list">
-						{showingShops.map((alpha,index) => (
-							<li key={index} onClick={(e) => this.seletOption(alpha.restaurant.id,e)}>
-								<p>{alpha.restaurant.name}</p>
+						{showingShops.map((shop,index) => (
+							<li key={index} role="button" tabIndex="0" aria-labelledby={"lb"+index} onClick={(e) => this.seletOption(shop.restaurant.id,e)}>
+								<p id={"lb"+index}>{shop.restaurant.name}</p>
 							</li>
 						))}
 					</ul>
