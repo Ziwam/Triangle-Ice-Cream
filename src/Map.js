@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import scriptloader from 'react-async-script-loader';
-import zomato_icon from './icons/zomato_icon.svg';
-import maps_icon from './icons/maps_icon.svg';
+import zomato_icon from './media/zomato_icon.svg';
+import maps_icon from './media/maps_icon.svg';
 
 class Map extends Component {
   constructor(props){

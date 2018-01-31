@@ -59,10 +59,11 @@ class App extends Component {
 		        	data={this.state.Data}/>;
 		}else if(this.state.Data.length == 0 && !this.state.FetchData) {
 			content = <Fill
-							fill_id={"fill-error"}/>;
+							text={"Error: Could Not Reach Servers."}
+							fill_class={"error"}/>;
 		}else {
 			content = <Fill
-							fill_id={"fill-fetch"}/>;
+							fill_class={"fetch"}/>;
 		}
 
     return (

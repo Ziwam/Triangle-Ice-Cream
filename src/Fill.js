@@ -4,7 +4,7 @@ class Fill extends Component {
 
 	render() {
 		return (
-			<div id={this.props.fill_id}></div>
+			<div id="fill"><div className={this.props.fill_class}><img/><p>{this.props.text}</p></div></div>
 		)
 	}
 }

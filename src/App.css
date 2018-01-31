@@ -58,14 +58,34 @@ header h1 {
 	flex-grow: 1;
 }
 
-#fill-error {
+#fill {
+	display: flex;
 	flex-grow: 1;
-	background-color: #ffd8d1;
+	background-color: #636363;
 }
 
-#fill-fetch {
-	flex-grow: 1;
-	background-color: #d7ffd1;
+#fill div {
+	margin: auto;
+	margin-top: 20vh; 
+	text-align: center;
+}
+
+#fill .error img {
+	height: 130px;
+	width: 130px;
+	content: url('./media/warning.svg');
+}
+
+#fill .error p {
+	margin: 0;
+	color: white;
+	font-size: 25px;
+}
+
+#fill .fetch img {
+	height: 130px;
+	width: 130px;
+	content: url('./media/load.svg');
 }
 
  /*------------List Styling*/
