@@ -23,6 +23,14 @@ Open [http://localhost:3000](http://localhost:3000/) to view the app in browser.
 
 `npm run build`
 This builds an optimized production build of the app to the `build` folder.
+For those using [Node](https://nodejs.org/), install [serve](https://github.com/zeit/serve) to run the build:
+
+```
+npm install -g serve
+serve -s build
+```
+
+This command runs the app on [http://localhost:5000](http://localhost:5000/)
 
 ## APIs Used
 
