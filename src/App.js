@@ -53,25 +53,30 @@ class App extends Component {
   	this.setState({Display});
   }
 
-  render() {
+  //Sets the main content based on data.
+  setContent = () => {
   	let content = null;
   	if(this.state.Data.length > 0 && !this.state.FetchData) {
   		//show map if there is data
-			content = <Map
+			return <Map
 		        	clearMarker={this.clearMarker}
 		        	clicked={this.state.Clicked}
 		        	display={this.state.Display}
 		        	data={this.state.Data}/>;
 		}else if(this.state.Data.length == 0 && !this.state.FetchData) {
 			//show error if no data and  fetch finished
-			content = <Fill
+			return <Fill
 							text={"Error: Could Not Reach Servers."}
 							fill_class={"error"}/>;
 		}else {
 			//show loading animation
-			content = <Fill
+			return <Fill
 							fill_class={"fetch"}/>;
 		}
+  }
+
+  render() {
+    let content = this.setContent();
 
     return (
       <div className="app">
