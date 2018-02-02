@@ -73,7 +73,7 @@ class Map extends Component {
   	}
 
     if(nextProps.clicked && this.state.markers.length > 0) {
-    	this.emphasizeMarker(parseFloat(nextProps.clicked));
+    	this.populateInfoWindow(parseFloat(nextProps.clicked));
     }
 
     /*
@@ -126,7 +126,7 @@ class Map extends Component {
   		allMarks.push(marker);
   		bounds.extend(marker.position);
 
-  		//adds listener to marker to pass id to populateinfowindow
+  		//adds listener to marker to pass id to populate infowindow
   		marker.addListener('click',() => {
   			this.populateInfoWindow(marker.id);
   		});
@@ -148,7 +148,7 @@ class Map extends Component {
   			infowindow.marker = null;
   		});
   	}
-  	this.clearBounce();
+  	// this.clearBounce();
   }
 
   //adds bounce animation to marker that matches id
@@ -195,7 +195,7 @@ class Map extends Component {
 
   render() {
     return (
-    	<div id="map"></div>
+    	<div id="map" role="application"></div>
     )
   }
 }
