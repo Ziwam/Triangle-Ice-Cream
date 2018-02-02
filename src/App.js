@@ -20,15 +20,15 @@ class App extends Component {
   	//fetch data and change state based on results
     ZomatoAPI.getAll()
     .then(Data => {
-    	if(Data.length > 0)
+    	if(Data.length > 0){
       	this.setState({
       		Data: Data,
       		ShowList: true,
       		FetchData: false
       	});
-    })
-    .catch(err => {
-      this.setState({FetchData: false});
+      }else {
+        this.setState({FetchData: false}); 
+      }
     })
   }
 
