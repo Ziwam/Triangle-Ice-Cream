@@ -54,7 +54,7 @@ class List extends Component {
 		}
 
 		return (
-			<aside id="list">
+			<div id="list" role="menubar">
 				<header><h2>Locations</h2></header>
 				<div className="input-wrapper">
 				<form onSubmit={(e) => this.filterDisplay(e)}>
@@ -70,15 +70,15 @@ class List extends Component {
 					</div>
 				</div>
 				<div className="list-wrapper">
-					<ul className="shop-list">
+					<ul className="shop-list" role="list">
 						{showingShops.map((shop,index) => (
-							<li key={index} role="button" tabIndex="0" aria-labelledby={"lb"+index} onClick={(e) => this.seletOption(shop.restaurant.id,e)}>
+							<li key={index} role="listitem" tabIndex="0" aria-labelledby={"lb"+index} onClick={(e) => this.seletOption(shop.restaurant.id,e)}>
 								<p id={"lb"+index}>{shop.restaurant.name}</p>
 							</li>
 						))}
 					</ul>
 				</div>
-			</aside>
+			</div>
 		)
 	}
 }
