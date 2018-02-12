@@ -1,4 +1,4 @@
-# Triangle Ice Cream (React)
+# [Triangle Ice Cream](https://ziwam.github.io/Triangle-Ice-Cream/) (React)
 
 This is an app that fetches data usng [Zomato's](https://www.zomato.com/) API to location ice cream shop in North Carolina's Research Triangle.
 Those locations are then plotted on a map provided by [Google Maps](https://developers.google.com/maps/) API. 
