@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
 import Map from './Map';
 import List from './List';
 import Fill from './Fill';
 import * as ZomatoAPI from './ZomatoAPI';
 import scriptloader from 'react-async-script-loader';
-import ToggleDisplay from 'react-toggle-display';
 
 class App extends Component {
   state = {
@@ -13,7 +11,8 @@ class App extends Component {
     Display: [],
     Clicked: null,
     ShowList: false,
-  	FetchData: true
+  	FetchData: true,
+    Cuisines: []
   }
 
   componentDidMount() {
@@ -21,6 +20,7 @@ class App extends Component {
     ZomatoAPI.getAll()
     .then(Data => {
     	if(Data.length > 0){
+        Data = this.divideCusines(Data);
       	this.setState({
       		Data: Data,
       		ShowList: true,
@@ -32,11 +32,15 @@ class App extends Component {
     })
   }
 
-  //show/hide menu on menu click
-  handleClick() {
-    this.setState({
-      ShowList: !this.state.ShowList
+  divideCusines = (data) => {
+    let arrayOfCuisines = [];
+    data.forEach((elm)=>{
+      let elmCuisines = elm.restaurant.cuisines.split(", ");
+      arrayOfCuisines.push(...elmCuisines);
+      elm.restaurant.cuisines = elmCuisines;
     });
+    this.setState({Cuisines: [...new Set(arrayOfCuisines)]})
+    return data;
   }
 
   //set clicked marker from list click to state clicked
@@ -80,25 +84,19 @@ class App extends Component {
 
     return (
       <div className="app">
-      	{/*checks Data.length to see it there's anything to show*/}
-      	{this.state.Data.length > 0 && (<div className="side-content">
-	      	<ToggleDisplay show={this.state.ShowList}>
-		      	<List
-		      		clearMarker={this.clearMarker}
-		      		setDisplay={this.setDisplay}
-		      		data={this.state.Data}
-		      		alrt={this.callMarker}/>
-		      </ToggleDisplay>
-		      <div className="button-wrapper" >
-		      	<div className="icon" role="button" tabIndex="0" aria-label="menu" onClick={ () => this.handleClick() }>
-		      		<i className="fa fa-bars"></i>
-		      	</div>
-		      </div>
-	      </div>)}
-      	<div className="content">
-      		<header><h1>Triangle Ice Cream</h1></header>
-	        {content}
-      	</div>
+        <header><h2>Triangle Ice Cream</h2></header>
+        <div className="map-wrapper">
+          {content}
+        </div>
+        {/*checks Data.length to see it there's anything to show*/}
+        {this.state.Data.length > 0 && (<div className="content">
+          <List
+            clearMarker={this.clearMarker}
+            setDisplay={this.setDisplay}
+            data={this.state.Data}
+            alrt={this.callMarker}
+            cuisineList={this.state.Cuisines}/>
+        </div>)}
       </div>
     )
   }

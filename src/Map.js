@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import scriptloader from 'react-async-script-loader';
-import zomato_icon from './media/zomato_icon.svg';
-import maps_icon from './media/maps_icon.svg';
+import zomato_icon from './assets/zomato_icon.svg';
+import maps_icon from './assets/maps_icon.svg';
 
 class Map extends Component {
   constructor(props){
@@ -184,8 +184,6 @@ class Map extends Component {
 	<div class="info">
 		<div class="rating" style="background-color:#${color}"><p>${marker.rating}</p></div>
 		<div class="icon-wrapper">
-			<a href=${marker.url} target="_blank" role="Link" tabindex="0" aria-label="zomato page"><img class="icon" src=${zomato_icon} alt="zomato logo"></a>
-			<a href=${directions} target="_blank" role="Link" tabindex="0" aria-label="directions"><img class="icon" src=${maps_icon} alt="google maps logo"></a>
 		</div>
 	</div>
 </div>

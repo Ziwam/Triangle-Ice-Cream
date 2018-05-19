@@ -1,0 +1,215 @@
+@font-face {
+  font-family: "Estrangelo_Edessa";
+  src: url("../assets/Estrangelo_Edessa.ttf"); }
+
+html, body {
+  height: 100%; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Estrangelo_Edessa", sans-serif; }
+
+html {
+  box-sizing: border-box; }
+
+.app header {
+  background: #000;
+  width: 100%;
+  color: #fff; }
+  .app header h2 {
+    margin: 0; }
+
+.app .map-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100vh; }
+  .app .map-wrapper #map {
+    width: 100%;
+    height: 100%; }
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-o-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-webkit-keyframes slide-in-left {
+  0% {
+    transform: translate(-100px, 0); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-moz-keyframes slide-in-left {
+  0% {
+    transform: translate(-100px, 0); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-o-keyframes slide-in-left {
+  0% {
+    transform: translate(-100px, 0); }
+  100% {
+    transform: translate(0, 0); } }
+
+@keyframes slide-in-left {
+  0% {
+    transform: translate(-100px, 0); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-webkit-keyframes slide-in-right {
+  0% {
+    transform: translate(100px, 0); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-moz-keyframes slide-in-right {
+  0% {
+    transform: translate(100px, 0); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-o-keyframes slide-in-right {
+  0% {
+    transform: translate(100px, 0); }
+  100% {
+    transform: translate(0, 0); } }
+
+@keyframes slide-in-right {
+  0% {
+    transform: translate(100px, 0); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-webkit-keyframes slide-in-up {
+  0% {
+    transform: translate(0, 15px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-moz-keyframes slide-in-up {
+  0% {
+    transform: translate(0, 15px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-o-keyframes slide-in-up {
+  0% {
+    transform: translate(0, 15px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@keyframes slide-in-up {
+  0% {
+    transform: translate(0, 15px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-webkit-keyframes slide-in-down {
+  0% {
+    transform: translate(0, -15px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-moz-keyframes slide-in-down {
+  0% {
+    transform: translate(0, -15px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-o-keyframes slide-in-down {
+  0% {
+    transform: translate(0, -15px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@keyframes slide-in-down {
+  0% {
+    transform: translate(0, -15px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@-webkit-keyframes anim-shadow {
+  0% {
+    box-shadow: -0.1px 0.1px 0.1px 0.1px rgba(0, 0, 0, 0); }
+  100% { } }
+
+@-moz-keyframes anim-shadow {
+  0% {
+    box-shadow: -0.1px 0.1px 0.1px 0.1px rgba(0, 0, 0, 0); }
+  100% { } }
+
+@-o-keyframes anim-shadow {
+  0% {
+    box-shadow: -0.1px 0.1px 0.1px 0.1px rgba(0, 0, 0, 0); }
+  100% { } }
+
+@keyframes anim-shadow {
+  0% {
+    box-shadow: -0.1px 0.1px 0.1px 0.1px rgba(0, 0, 0, 0); }
+  100% { } }
+
+@-webkit-keyframes grow-skill {
+  0% {
+    transform: scale(0.92); }
+  100% { } }
+
+@-moz-keyframes grow-skill {
+  0% {
+    transform: scale(0.92); }
+  100% { } }
+
+@-o-keyframes grow-skill {
+  0% {
+    transform: scale(0.92); }
+  100% { } }
+
+@keyframes grow-skill {
+  0% {
+    transform: scale(0.92); }
+  100% { } }
+
+@-webkit-keyframes grow-card {
+  0% {
+    transform: scale(0.98); }
+  100% { } }
+
+@-moz-keyframes grow-card {
+  0% {
+    transform: scale(0.98); }
+  100% { } }
+
+@-o-keyframes grow-card {
+  0% {
+    transform: scale(0.98); }
+  100% { } }
+
+@keyframes grow-card {
+  0% {
+    transform: scale(0.98); }
+  100% { } }

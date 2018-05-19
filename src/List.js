@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
+import cake_icon from './assets/piece-of-cake.svg'
+import ice_cream_icon from './assets/ice-cream-cone.svg'
+import yogurt_icon from './assets/frozen-yogurt.svg'
 
 class List extends Component {
 	state = {
 		query: '',
-		display: []
+		display: [],
+		checked: true,
+		sort: 'ratings'
 	}
 
 	//save input value to query state
 	updateQuery = (query) => {
 		this.setState({query});
+	}
+
+	handleClick = () => {
+		this.setState({checked: !this.state.checked});
 	}
 
 	/*
@@ -17,6 +26,24 @@ class List extends Component {
 	*/
 	seletOption = (string) => {
 		this.props.alrt(string);
+	}
+
+	iconSelect = (elm) => {
+		let attributes = "";
+		switch(elm){
+			case "Ice Cream":
+				return <img src={ice_cream_icon} alt="ice_cream_icon" className="icon"/>;
+				break;
+			case "Frozen Yogurt":
+				return <img src={ice_cream_icon} alt="ice_cream_icon" className="icon"/>;
+				break;
+			case "Desserts":
+				return <img src={ice_cream_icon} alt="ice_cream_icon" className="icon"/>;
+				break;
+			default:
+				return <img src={ice_cream_icon} alt="ice_cream_icon" className="icon"/>;
+				break;
+		}
 	}
 
 	//filters list on submit/filter-button click
@@ -41,8 +68,41 @@ class List extends Component {
 		this.props.setDisplay(showingShops);
 		this.props.clearMarker();
 	}
+
+	sortDisplay = (value) => {
+
+		let showingShops = [];
+
+		switch(value) {
+			case "Ratings":
+				showingShops = this.props.data.sort((a,b)=>{
+					return (a.restaurant.user_rating.aggregate_rating > b.restaurant.user_rating.aggregate_rating)? -1:1;
+				})
+				break;
+			case "Alphabetical":
+				showingShops = this.props.data.sort((a,b)=>{
+					return (a.restaurant.name < b.restaurant.name)? -1:1;
+				})
+				break;
+			default:
+				showingShops = this.props.data.filter((obj) => {
+					return (obj.restaurant.cuisines.indexOf(value.toString()) >= 0)? true:false;
+				})
+				break;
+		}
+
+		this.setState({display:showingShops});
+
+		//resets query to empty string
+		this.setState({query:''});
+
+		//pass filtered list to parent
+		this.props.setDisplay(showingShops);
+		this.props.clearMarker();
+	}
 	
 	render() {
+
 		let showingShops;
 		//checks if filtered list state has objectcs
 		if(this.state.display.length > 0){
@@ -54,29 +114,52 @@ class List extends Component {
 		}
 
 		return (
-			<div id="list" role="menubar">
-				<header><h2>Locations</h2></header>
+			<div>
 				<div className="input-wrapper">
-				<form onSubmit={(e) => this.filterDisplay(e)}>
-					<input
-						type="text"
-						placeholder="Enter an Ice Cream Shop"
-						value={this.state.query}
-						role="textbox"
-						onChange={(ev) => this.updateQuery(ev.target.value)}/>
+					<form onSubmit={(e) => this.filterDisplay(e)}>
+						<input
+							type="text"
+							placeholder="Enter an Ice Cream Shop"
+							value={this.state.query}
+							role="textbox"
+							onChange={(ev) => this.updateQuery(ev.target.value)}/>
+							<input 
+								type="submit" 
+								value="submit"
+								onClick={(e) => this.filterDisplay(e)}/>
 					</form>
-					<div className="filter-button" role="button" tabIndex="0" aria-label="filter" onClick={(e) => this.filterDisplay(e)}>
-						<i className="fa fa-filter"></i>
-					</div>
 				</div>
-				<div className="list-wrapper">
-					<ul className="shop-list" role="list">
-						{showingShops.map((shop,index) => (
-							<li key={index} role="listitem" tabIndex="0" aria-labelledby={"lb"+index} onClick={(e) => this.seletOption(shop.restaurant.id,e)}>
-								<p id={"lb"+index}>{shop.restaurant.name}</p>
-							</li>
-						))}
-					</ul>
+				<div className="menu" role="menubar">
+					<div className="toggle">
+						<input type="checkbox" name="section" id="tog_list" checked={this.state.checked === true} onChange={this.handleClick}/>
+						<label htmlFor="tog_list" className="toggle-label">Goals</label>
+					</div>
+					<div className={`list-wrapper ${this.state.checked? "active":""}`}>
+			        	<div className="list-head">
+							<div className="results">12 results</div>
+							<select id="sort" onChange={(ev)=> this.sortDisplay(ev.target.value)}>
+								<option value="Ratings">Ratings</option>
+								<option value="Alphabetical">Alphabetical</option>
+								{this.props.cuisineList.map((elm,index)=>(
+									<option key={index} value={elm}>{elm}</option>	
+								))}
+							</select>
+			        	</div>
+						<ul className="shop-list" role="list">
+							{showingShops.map((shop,index) =>(
+								<li key={index} role="listitem" tabIndex="0" aria-labelledby={"lb"+index} onClick={(e) => this.seletOption(shop.restaurant.id,e)}>
+									<div id={"lb"+index} className="item-info">
+									{this.iconSelect(shop.restaurant.cuisines[0])}
+										<div className="item-info">
+											<div className="shop-name">{shop.restaurant.name}</div>
+											<div className="border1"><div className="border2"></div></div>
+											<div className="cuisine-list">{shop.restaurant.cuisines.join(" · ")}</div>
+										</div>
+									</div>
+								</li>
+							))}
+						</ul>
+					</div>
 				</div>
 			</div>
 		)

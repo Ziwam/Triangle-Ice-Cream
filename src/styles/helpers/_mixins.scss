@@ -1,0 +1,69 @@
+@import '../helpers/variables.scss';
+
+//Animation
+@mixin keyframe ($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+//Props
+@mixin shape-shadow($angle...){
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: $angle;
+}
+
+
+//Scalability
+@mixin mobile {
+	@media (max-width: #{$phablet}) {
+		@content;
+	}
+}
+
+@mixin phablet {
+	@media (min-width: #{$phablet}) and (max-width: #{$tablet}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (min-width: #{$tablet}) and (max-width: #{$laptop}) {
+		@content;
+	}
+}
+
+@mixin laptop {
+	@media (min-width: #{$laptop}){
+		@content;
+	}
+}
