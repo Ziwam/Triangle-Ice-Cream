@@ -35,10 +35,10 @@ class List extends Component {
 				return <img src={ice_cream_icon} alt="ice_cream_icon" className="icon"/>;
 				break;
 			case "Frozen Yogurt":
-				return <img src={ice_cream_icon} alt="ice_cream_icon" className="icon"/>;
+				return <img src={yogurt_icon} alt="ice_cream_icon" className="icon"/>;
 				break;
 			case "Desserts":
-				return <img src={ice_cream_icon} alt="ice_cream_icon" className="icon"/>;
+				return <img src={cake_icon} alt="ice_cream_icon" className="icon"/>;
 				break;
 			default:
 				return <img src={ice_cream_icon} alt="ice_cream_icon" className="icon"/>;
@@ -114,27 +114,31 @@ class List extends Component {
 		}
 
 		return (
-			<div>
-				<div className="input-wrapper">
-					<form onSubmit={(e) => this.filterDisplay(e)}>
-						<input
-							type="text"
-							placeholder="Enter an Ice Cream Shop"
-							value={this.state.query}
-							role="textbox"
-							onChange={(ev) => this.updateQuery(ev.target.value)}/>
-							<input 
-								type="submit" 
-								value="submit"
-								onClick={(e) => this.filterDisplay(e)}/>
-					</form>
-				</div>
-				<div className="menu" role="menubar">
+			<div className="content">
+				<form id="search_bar" onSubmit={(e) => this.filterDisplay(e)}>
 					<div className="toggle">
 						<input type="checkbox" name="section" id="tog_list" checked={this.state.checked === true} onChange={this.handleClick}/>
-						<label htmlFor="tog_list" className="toggle-label">Goals</label>
+						<label htmlFor="tog_list" className="toggle-label">
+							<div className="bar_1"></div>
+							<div className="bar_2"></div>
+							<div className="bar_3"></div>
+						</label>
 					</div>
-					<div className={`list-wrapper ${this.state.checked? "active":""}`}>
+					<input
+						type="text"
+						className="input_field"
+						placeholder="search..."
+						value={this.state.query}
+						role="textbox"
+						onChange={(ev) => this.updateQuery(ev.target.value)}/>
+					<input 
+						className="submit"
+						type="submit" 
+						value="submit"
+						onClick={(e) => this.filterDisplay(e)}/>
+				</form>
+				<div className="menu" role="menubar">
+					<div className={`list-wrapper ${this.state.checked? "":"hidden"}`}>
 			        	<div className="list-head">
 							<div className="results">12 results</div>
 							<select id="sort" onChange={(ev)=> this.sortDisplay(ev.target.value)}>
@@ -149,8 +153,8 @@ class List extends Component {
 							{showingShops.map((shop,index) =>(
 								<li key={index} role="listitem" tabIndex="0" aria-labelledby={"lb"+index} onClick={(e) => this.seletOption(shop.restaurant.id,e)}>
 									<div id={"lb"+index} className="item-info">
-									{this.iconSelect(shop.restaurant.cuisines[0])}
-										<div className="item-info">
+										{this.iconSelect(shop.restaurant.cuisines[0])}
+										<div className="text">
 											<div className="shop-name">{shop.restaurant.name}</div>
 											<div className="border1"><div className="border2"></div></div>
 											<div className="cuisine-list">{shop.restaurant.cuisines.join(" · ")}</div>
@@ -159,6 +163,14 @@ class List extends Component {
 								</li>
 							))}
 						</ul>
+					</div>
+					<div className="toggle">
+						<input type="checkbox" name="section" id="tog_list" checked={this.state.checked === true} onChange={this.handleClick}/>
+						<label htmlFor="tog_list" className="toggle-label">
+							<div className="bar_1"></div>
+							<div className="bar_2"></div>
+							<div className="bar_3"></div>
+						</label>
 					</div>
 				</div>
 			</div>

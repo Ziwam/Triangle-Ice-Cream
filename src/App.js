@@ -88,8 +88,7 @@ class App extends Component {
         <div className="map-wrapper">
           {content}
         </div>
-        {/*checks Data.length to see it there's anything to show*/}
-        {this.state.Data.length > 0 && (<div className="content">
+        {this.state.Data.length > 0 && (<div className="content-wrapper">
           <List
             clearMarker={this.clearMarker}
             setDisplay={this.setDisplay}

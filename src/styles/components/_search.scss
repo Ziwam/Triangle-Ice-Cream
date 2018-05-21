@@ -1,0 +1,114 @@
+@import '../helpers/_mixins.scss';
+
+#search_bar {
+	position: absolute;
+	z-index: 1;
+	margin-top: 15px;
+	width: 90%;
+	max-width: 370px;
+	right: 30px;
+
+	.toggle {
+		display: none;
+	}
+
+	.input_field {
+		border: none;
+		width: calc(100% - 60px);	
+		padding: 10px 8px;
+	}
+
+	.submit {
+		border: none;
+		background: $blue;
+		color: #fff;
+		height: 35px;
+		width: 60px;
+	}
+
+	@include lg-mobile {
+		width: 100%;
+		right: auto;
+		margin-top: 0;
+		max-width: 800px;
+
+		.toggle {
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			display: block;
+
+			input {
+				display: none;
+			}
+
+			.toggle-label {
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+				width: 100%;
+				padding: 8px 0;
+
+				div {
+					width: 35px;
+					height: 5px;
+					background: #ccc;
+					margin: auto;
+				} 
+			}
+		}
+
+		.input_field {
+			height: 50px;
+			font-size: 1em;
+			padding-left: 60px;
+		}
+
+		.submit {
+			height: 50px;
+		}
+	}
+
+	@include mobile {
+		width: 100%;
+		right: auto;
+		margin-top: 0;
+		max-width: 800px;
+
+		.toggle {
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			display: block;
+
+			input {
+				display: none;
+			}
+
+			.toggle-label {
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+				width: 100%;
+				padding: 8px 0;
+
+				div {
+					width: 35px;
+					height: 5px;
+					background: #ccc;
+					margin: auto;
+				} 
+			}
+		}
+
+		.input_field {
+			height: 50px;
+			font-size: 1em;
+			padding-left: 60px;
+		}
+
+		.submit {
+			height: 50px;
+		}
+	}
+}
