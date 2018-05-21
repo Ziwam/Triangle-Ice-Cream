@@ -1,1 +1,29 @@
 @import '../helpers/_mixins.scss';
+
+  header {
+    background: #000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: $header-height;
+    color: #fff;
+    font-weight: lighter;
+
+    .logo {
+    	height: 22px;
+    	width: 22px;
+    	margin: 0 10px;
+    }
+    
+    h2 {
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+    }
+
+    @include mobile {
+    	h2 {
+    		font-size: 1.1em;
+    	}
+    }
+  }

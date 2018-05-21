@@ -180,12 +180,20 @@ class Map extends Component {
   	const markup = `
 <div id="infowindow">
 	<h3>${marker.title}</h3>
-	<h4>${marker.cuisines}</h4>
+  <div class="border1"><div class="border2"></div></div>
+	<p class="address">${marker.address}</p>
 	<div class="info">
-		<div class="rating" style="background-color:#${color}"><p>${marker.rating}</p></div>
-		<div class="icon-wrapper">
-		</div>
+		<div class="rating">${marker.rating}/5</div>
+    <div class="list">
+      ${marker.cuisines.map((elm)=>{
+        return `<div className="cuisines">${elm}</div>`
+      }).join('')}
+    </div>
 	</div>
+  <div class="link-wrapper">
+    <a href=${marker.url} target="_blank" role="Link" tabindex="0" aria-label="zomato page" class="zamoto_link">More Details</a>
+    <a href=${directions} target="_blank" role="Link" tabindex="0" aria-label="directions" class="directions">Directions</a>
+  </div>
 </div>
   	`;
   	return markup;

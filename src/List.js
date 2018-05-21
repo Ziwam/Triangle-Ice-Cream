@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cake_icon from './assets/piece-of-cake.svg'
 import ice_cream_icon from './assets/ice-cream-cone.svg'
 import yogurt_icon from './assets/frozen-yogurt.svg'
+import other_icon from './assets/big-pretzel.svg'
 
 class List extends Component {
 	state = {
@@ -26,6 +27,7 @@ class List extends Component {
 	*/
 	seletOption = (string) => {
 		this.props.alrt(string);
+		this.handleClick();
 	}
 
 	iconSelect = (elm) => {
@@ -35,13 +37,13 @@ class List extends Component {
 				return <img src={ice_cream_icon} alt="ice_cream_icon" className="icon"/>;
 				break;
 			case "Frozen Yogurt":
-				return <img src={yogurt_icon} alt="ice_cream_icon" className="icon"/>;
+				return <img src={yogurt_icon} alt="yogurt_icon" className="icon"/>;
 				break;
 			case "Desserts":
-				return <img src={cake_icon} alt="ice_cream_icon" className="icon"/>;
+				return <img src={cake_icon} alt="cake_icon" className="icon"/>;
 				break;
 			default:
-				return <img src={ice_cream_icon} alt="ice_cream_icon" className="icon"/>;
+				return <img src={other_icon} alt="other_icon" className="icon"/>;
 				break;
 		}
 	}
@@ -140,8 +142,9 @@ class List extends Component {
 				<div className="menu" role="menubar">
 					<div className={`list-wrapper ${this.state.checked? "":"hidden"}`}>
 			        	<div className="list-head">
-							<div className="results">12 results</div>
-							<select id="sort" onChange={(ev)=> this.sortDisplay(ev.target.value)}>
+							<div className="results">{showingShops.length} results</div>
+							<select id="sort" value="1" onChange={(ev)=> this.sortDisplay(ev.target.value)}>
+								<option value="1" disabled>sort...</option>
 								<option value="Ratings">Ratings</option>
 								<option value="Alphabetical">Alphabetical</option>
 								{this.props.cuisineList.map((elm,index)=>(
@@ -162,6 +165,7 @@ class List extends Component {
 									</div>
 								</li>
 							))}
+							<div className="credit">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 						</ul>
 					</div>
 					<div className="toggle">

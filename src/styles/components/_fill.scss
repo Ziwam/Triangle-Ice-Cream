@@ -1,1 +1,32 @@
 @import '../helpers/_mixins.scss';
+
+#fill {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  font-family: $font-body;
+  div {
+    margin: auto;
+    margin-top: 20vh;
+    text-align: center;
+  }
+  .error {
+    img {
+      height: 130px;
+      width: 130px;
+      content: url('../assets/logo.svg');
+    }
+    p {
+      margin: 0;
+      color: white;
+      font-size: 25px;
+    }
+  }
+  .fetch img {
+    height: 130px;
+    width: 130px;
+    content: url('../assets/logo.svg');
+    @include animation('spin 1s linear infinite normal backwards');
+  }
+}

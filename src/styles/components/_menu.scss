@@ -1,11 +1,14 @@
 @import '../helpers/_mixins.scss';
 
 .menu {
+	z-index: 1;
 	display: flex;
 
 	.list-wrapper {
+		position: relative;
 		background: #FFFFFF;
 		height: 100%;
+		transition: all .3s;
 
 		.list-head {
 			height: 50px;
@@ -52,7 +55,7 @@
 					align-items: center;
 					min-height: 60px;
 					margin-right: 4px;
-					background: #F7F7F7;
+					background: $wht-bg;
 					border-top: 1px solid $grey;
 					border-right: 1px solid $grey;
 					border-bottom: 1px solid $grey;
@@ -93,17 +96,23 @@
 					}
 				}
 			}
+
+			.credit{
+				font-size: .6em;
+			}
 		}
 
-		&.hidden {
-			display: none;
+		@media (min-width: #{$phablet}) {		
+			&.hidden {
+				margin-left: -294px;
+			}
 		}
+
 	}
 
 	.toggle {
-		width: 50px;
-		height: 50px;
-		background: $blue;
+		width: 40px;
+		height: 40px;
 
 		input {
 			display: none;
@@ -114,25 +123,43 @@
 			flex-direction: column;
 			height: 100%;
 			width: 100%;
-			padding: 8px 0;
+			padding: 6px 0;
+			background: $blue;
 
 			div {
-				width: 35px;
-				height: 5px;
+				width: 30px;
+				height: 4px;
 				background: #fff;
 				margin: auto;
+				border-radius: 3px;
+				transition: all .3s;
 			} 
+		}
+
+		input[type="checkbox"]:checked+label {
+			.bar_1 {
+				transform: translateY(9px) rotate(-45deg);
+			}
+			.bar_2 {
+				opacity: 0;
+			}
+			.bar_3 {
+				transform: translateY(-9px) rotate(45deg);
+			}
 		}
 	}
 
 	@include lg-mobile {
 		.list-wrapper {
-			height: calc(100% - 50px);
-			margin-top: 50px;
-			width: 100%;
+			height: calc(100% - 40px);
+			margin-top: 40px;
 
 			.list-head {
 				border-top: 1px solid $grey;
+			}
+
+			&.hidden {
+				margin-left: -294px;
 			}
 		}
 
@@ -145,8 +172,8 @@
 		width: 100%;
 		
 		.list-wrapper {
-			height: calc(100% - 50px);
-			margin-top: 50px;
+			height: calc(100% - 40px);
+			margin-top: 40px;
 			width: 100%;
 
 			.list-head {
@@ -163,6 +190,10 @@
 					}
 				}
 			}
+
+			&.hidden {
+				margin-left: -100%;
+			}
 		}
 
 		.toggle {
@@ -174,7 +205,7 @@
 /* width */
 
 ::-webkit-scrollbar {
-  	width: 7px;
+  	width: 10px;
 }
 
 /* Track */

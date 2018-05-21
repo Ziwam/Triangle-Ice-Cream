@@ -4,6 +4,7 @@ import List from './List';
 import Fill from './Fill';
 import * as ZomatoAPI from './ZomatoAPI';
 import scriptloader from 'react-async-script-loader';
+import logo_icon from './assets/logo.svg'
 
 class App extends Component {
   state = {
@@ -84,7 +85,10 @@ class App extends Component {
 
     return (
       <div className="app">
-        <header><h2>Triangle Ice Cream</h2></header>
+        <header>
+          <img src={logo_icon} alt="logo_icon" className="logo"/>
+          <h2>Triangle Ice Cream</h2>
+        </header>
         <div className="map-wrapper">
           {content}
         </div>

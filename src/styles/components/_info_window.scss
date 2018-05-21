@@ -1,0 +1,78 @@
+@import '../helpers/_mixins.scss';
+
+#infowindow {
+	width: 200px;
+	font-family: $font-body;
+	
+	h3 {
+		margin: 0;
+		font-size: 1.3em;
+		text-transform: uppercase;
+	}
+
+	.border1 {
+		background: $grey;
+		width: 100%;
+		height: 1px;
+
+		.border2 {
+			background: $blue;
+			width: 30%;
+			height: 100%;
+		}
+	}
+
+	.address {
+		margin: 0;
+		font-size: .9em;
+		color: #888;
+		margin-top: 4px;
+	}
+
+	.info {
+		display: flex;
+		flex-wrap: nowrap;
+		width: 100%;
+		background: $wht-bg;
+		border: 1px solid $grey;
+		color: $blue;
+		align-items: center;
+		justify-content: space-around;
+		padding: 4px;
+		margin-top: 5px;
+
+		.rating {
+			font-size: 2.4em;
+		}
+
+		.list {
+			font-size: .9;
+		}
+	}
+
+	.link-wrapper {
+		display: flex;
+		justify-content: space-around;
+		margin-top: 7px;
+
+		a {
+			text-decoration: none;
+			padding: 2px 4px;
+			border: 1px solid $grey;
+			font-size: .8em;
+			border-radius: 10px;
+			width: 80px;
+			text-align: center;
+
+			&.zamoto_link {
+				border-color: $blue;
+				color: $blue;
+			}
+
+			&.directions {
+				border-color: #39b54a;
+				color: #39b54a;
+			}
+		}
+	}
+}
