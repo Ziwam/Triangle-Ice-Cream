@@ -1,11 +1,11 @@
-@import '../helpers/_variables.scss';
+@import '../helpers/_mixins.scss';
 
 @font-face {
   font-family: "Estrangelo_Edessa";
   src: url("../assets/Estrangelo_Edessa.ttf");
 }
 
-html, body {
+html, body, #root {
   height: 100%;
 }
 

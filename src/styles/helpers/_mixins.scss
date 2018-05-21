@@ -1,4 +1,4 @@
-@import '../helpers/variables.scss';
+@import '../helpers/_variables.scss';
 
 //Animation
 @mixin keyframe ($animationName) {
@@ -45,9 +45,15 @@
 
 //Scalability
 @mixin mobile {
-	@media (max-width: #{$phablet}) {
+	@media (max-width: #{$mobile}) {
 		@content;
 	}
+}
+
+@mixin lg-mobile {
+    @media (min-width: #{$mobile}) and (max-width: #{$phablet}) {
+        @content;
+    }
 }
 
 @mixin phablet {
