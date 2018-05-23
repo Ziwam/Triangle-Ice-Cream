@@ -202,8 +202,10 @@ header {
       display: none; } }
   @media (max-width: 425px) {
     .menu {
+      pointer-events: none;
       width: 100%; }
       .menu .list-wrapper {
+        pointer-events: auto;
         height: calc(100% - 40px);
         margin-top: 40px;
         width: 100%; }

@@ -143,7 +143,7 @@ class List extends Component {
 					<div className={`list-wrapper ${this.state.checked? "":"hidden"}`}>
 			        	<div className="list-head">
 							<div className="results">{showingShops.length} results</div>
-							<select id="sort" value="1" onChange={(ev)=> this.sortDisplay(ev.target.value)}>
+							<select id="sort" defaultValue="1" onChange={(ev)=> this.sortDisplay(ev.target.value)}>
 								<option value="1" disabled>sort...</option>
 								<option value="Ratings">Ratings</option>
 								<option value="Alphabetical">Alphabetical</option>
