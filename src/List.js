@@ -52,12 +52,13 @@ class List extends Component {
 	filterDisplay = (event) => {
 		event.preventDefault();
 
+
 		let showingShops = [];
 		if(this.state.query){
 			const match = new RegExp(this.state.query, 'i');
 			showingShops = this.props.data.filter((shop) => match.test(shop.restaurant.name));
 			//sets shops view to state display
-			this.setState({display:showingShops});
+			this.setState({display:showingShops, checked: true});
 		}else{
 			//empty display if no query
 			this.setState({display:[]});
